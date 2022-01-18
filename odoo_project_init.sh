@@ -19,7 +19,7 @@ do
         admin_passwd=$(pwgen 25 1)
         usr=$i
 		odoo_port=$odoo_lport
-        
+
         odoopoll_port=$((odoo_port+1))
 		odoo_lport=$((odoopoll_port+1))
         pid_file="/opt/odoo$ver/run/$i.pid"
@@ -27,10 +27,10 @@ do
         log_level="debug"
         ln /usr/bin/python3.8 /usr/bin/$i
 
-        echo -e "admin_pass = $admin_passwd\\nuser=$i\\ndb_passwd = $db_passwd" > /opt/odoo${ver}_secrets/$i.txt
+        sudo echo -e "admin_pass = $admin_passwd\\nuser=$i\\ndb_passwd = $db_passwd" > /opt/odoo${ver}_secrets/$i.txt
         addons_path="/opt/odoo$ver/addons,/opt/odoo$ver/projects/$i/modules"
 		echo $addons_path
-        ./conf_gen.sh $admin_passwd 5432 $usr $db_passwd $addons_path "/opt/odoo$ver/projects/$i/data" $odoo_port $odoopoll_port $usr 2 1\
+        sudo ./conf_gen.sh $admin_passwd 5432 $usr $db_passwd $addons_path "/opt/odoo$ver/projects/$i/data" $odoo_port $odoopoll_port $usr 2 1\
                 2147483648 2147483648 8192 3600 3600 ${pid_file} ${log_file} ${log_level} > /etc/odoo/$i/$i.conf
-		./create_service_odoo.sh $i > /etc/systemd/system/$i.service		
+		sudo ./create_service_odoo.sh $i > /etc/systemd/system/$i.service		
 done;
