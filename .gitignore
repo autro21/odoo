@@ -7,6 +7,6 @@ importants
 jenkin_odoo_install.sh
 mcreate_backup.sh
 monitor_server
-monitors.sh
 odoo_script.sh
 send_logs.sh
+green.log
