@@ -30,7 +30,7 @@ do
         addons_path="/opt/odoo$ver/addons,/opt/odoo$ver/projects/$i/modules"
         sudo ./conf_gen.sh $admin_passwd 5432 $usr $db_passwd $addons_path "/opt/odoo$ver/projects/$i/data" $odoo_port $odoopoll_port $usr 2 1\
                 2147483648 2147483648 8192 3600 3600 ${pid_file} ${log_file} ${log_level} > $i.conf
-        sudo mv ./$i.conf /etc/odoo/$i/$i.conf
+        sudo mv $i.conf /etc/odoo/$i/$i.conf
 		sudo ./create_service_odoo.sh $i > $i.service
-        sudo mv ./$i.service /etc/systemd/system/$i.service
+        sudo mv $i.service /etc/systemd/system/$i.service
 done;
