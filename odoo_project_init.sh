@@ -18,12 +18,8 @@ do
         db_passwd=$(pwgen 25 1)
         admin_passwd=$(pwgen 25 1)
         usr=$i
-		if [[ ! -d "$odoo_lport" ]]; then
-            odoo_port=9051
-		else
-			odoo_port=$odoo_lport
-		fi
-
+		odoo_port=$odoo_lport
+        
         odoopoll_port=$((odoo_port+1))
 		odoo_lport=$((odoopoll_port+1))
         pid_file="/opt/odoo$ver/run/$i.pid"
