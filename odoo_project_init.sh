@@ -33,9 +33,12 @@ do
                 2147483648 2147483648 8192 3600 3600 ${pid_file} ${log_file} ${log_level} > $Curr/$i.conf
         sudo chown $i:odoo $Curr/$i.conf
         sudo mv $Curr/$i.conf /etc/odoo/$i/$i.conf
-        
+        touch /opt/odoo$ver/run/ 
 		./create_service_odoo.sh $i > $Curr/$i.service
         sudo chown $i:odoo $Curr/$i.service
         sudo mv $Curr/$i.service /etc/systemd/system/$i.service
 done;
 sudo systemctl daemon-reload
+systemctl stop nginx $@
+systemctl start nginx $@
+./monitors.sh
