@@ -1,7 +1,7 @@
 #!/bin/bash
 #sam
 ver=$OdooVer
-
+Home=`pwd`
 #odoo_lport : string var in jenkins
 for i in "$@";
 do
@@ -25,7 +25,8 @@ do
         pid_file="/opt/odoo$ver/run/$i.pid"
         log_file="/var/log/odoo/$i.log"
         log_level="debug"
-        Curr=`pwd`
+        cd $Home;
+        Curr=$Home
         ln /usr/bin/python3.8 /usr/bin/$i
         addons_path="/opt/odoo$ver/addons,/opt/odoo$ver/projects/$i/modules"
         ./conf_gen.sh $admin_passwd 5432 $usr $db_passwd $addons_path "/opt/odoo$ver/projects/$i/data" $odoo_port $odoopoll_port $usr 2 1\
