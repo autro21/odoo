@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#sam
 ver=$OdooVer
 
 #odoo_lport : string var in jenkins
