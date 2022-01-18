@@ -13,7 +13,7 @@ do
 
         sudo useradd -d /opt/odoo$ver/projects/$i -s /usr/sbin/nologin -G odoo $i
 		sudo chown -R $i:odoo /opt/odoo$ver/projects/$i/
-        sudo mkdir /etc/odoo/$i
+        sudo mkdir -p /etc/odoo/$i
         #mkdir /etc/odoo/$i/$i.conf
         db_passwd=$(pwgen 25 1)
         admin_passwd=$(pwgen 25 1)
@@ -27,7 +27,6 @@ do
         log_level="debug"
         ln /usr/bin/python3.8 /usr/bin/$i
 
-        sudo echo -e "admin_pass = $admin_passwd\\nuser=$i\\ndb_passwd = $db_passwd" > /opt/odoo${ver}_secrets/$i.txt
         addons_path="/opt/odoo$ver/addons,/opt/odoo$ver/projects/$i/modules"
 		echo $addons_path
         sudo ./conf_gen.sh $admin_passwd 5432 $usr $db_passwd $addons_path "/opt/odoo$ver/projects/$i/data" $odoo_port $odoopoll_port $usr 2 1\
