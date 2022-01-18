@@ -1,0 +1,12 @@
+backup_log
+create_backup.sh
+create_odoo_project.sh
+db_backup
+docker-compose.yml
+importants
+jenkin_odoo_install.sh
+mcreate_backup.sh
+monitor_server
+monitors.sh
+odoo_script.sh
+send_logs.sh
